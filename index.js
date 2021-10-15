@@ -23,12 +23,13 @@ function parseRSData(dataString) {
       };
     }
   });
-  console.log(sanitizedData);
+  //   console.log(sanitizedData);
 
   return sanitizedData;
 }
 
 async function getHighScores(playerType, playerName) {
+  //Types available are "regular", "ironman", "hardcore"
   let result = await playerTypeTable[playerType].get("", {
     params: {
       player: playerName,
@@ -39,23 +40,26 @@ async function getHighScores(playerType, playerName) {
   return scoresData;
 }
 
-app.get("/regularHS/:playerToSearch", async function (req, res) {
-  try {
-    let result = await runescape.get("", {
-      params: {
-        player: req.params.playerToSearch,
-      },
-    });
+//Does not exist, deprecated
+// app.get("/regularHS/:playerToSearch", async function (req, res) {
+//   try {
+//     let result = await runescape.get("", {
+//       params: {
+//         player: req.params.playerToSearch,
+//       },
+//     });
 
-    let dataObj = parseRSData(result.data);
-    res.send(dataObj);
-  } catch (e) {
-    res.status(404).send({ error: e });
-  }
-});
+//     let dataObj = parseRSData(result.data);
+//     res.send(dataObj);
+//   } catch (e) {
+//     console.log("Error: " + e);
+//     res.status(404).send({ error: e });
+//   }
+// });
 
 app.get("/:playerType/:playerName", async (req, res) => {
   try {
+    //Types available are "regular", "ironman", "hardcore"
     let dataObj = await getHighScores(
       req.params.playerType,
       req.params.playerName
@@ -66,17 +70,18 @@ app.get("/:playerType/:playerName", async (req, res) => {
   }
 });
 
-app.get("/online", (req, res) => {
-  //   axios.get(
-  //     "https://secure.runescape.com/m=website-data/playerDetails.ws?names=%5B%22jhelm%22%5D",
-  //     {
-  //       headers: {
-  //         "Content-Type": "application/javascript",
-  //         dataType: "jsonp",
-  //       },
-  //     }
-  //   );
-});
+//Needs implementation
+// app.get("/online", (req, res) => {
+//   //   axios.get(
+//   //     "https://secure.runescape.com/m=website-data/playerDetails.ws?names=%5B%22jhelm%22%5D",
+//   //     {
+//   //       headers: {
+//   //         "Content-Type": "application/javascript",
+//   //         dataType: "jsonp",
+//   //       },
+//   //     }
+//   //   );
+// });
 
 app.listen(PORT, () => {
   console.log("App listening on PORT: " + PORT);
