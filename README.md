@@ -5,11 +5,11 @@
 
 ## Endpoints
 
-> /regular/<playername>
+`/regular/<playername>`
 
-> /ironman/<playername>
+`/ironman/<playername>`
 
-> /hardcore/<playername>
+`/hardcore/<playername>`
 
 ### Notes
 
