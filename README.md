@@ -5,9 +5,11 @@
 
 ## Endpoints
 
-/regular/<playername>  
-/ironman/<playername>  
-/hardcore/<playername>
+> /regular/<playername>
+
+> /ironman/<playername>
+
+> /hardcore/<playername>
 
 ### Notes
 
